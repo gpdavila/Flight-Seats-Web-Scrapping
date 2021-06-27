@@ -9,8 +9,15 @@ def validate_args(first, second):
     '''
     Checks if both seats contains letters AND numbers
     '''
-    if((not first.isalpha() and not first.isdigit())
-        and (not second.isalpha() and not second.isdigit())):
+    first_ok = False
+    second_ok = False
+    
+    if(re.match('^[0-9]+[a-zA-Z]+$',first) or re.match('^[a-zA-Z]+[0-9]+$',first)):
+        first_ok = True
+    if(re.match('^[0-9]+[a-zA-Z]+$',second) or re.match('^[a-zA-Z]+[0-9]+$',second)):
+        second_ok = True
+
+    if(first_ok and second_ok):
         return True
 
 def find_element(driver, identifier):
